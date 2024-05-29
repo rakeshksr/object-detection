@@ -4,6 +4,8 @@ use std::sync::Mutex;
 use base64::prelude::*;
 use image::{self, DynamicImage, ImageFormat};
 use once_cell::sync::Lazy;
+use tauri::menu::Menu;
+use tauri::AppHandle;
 use tract_onnx::prelude::*;
 use tract_onnx::tract_hir::infer::InferenceOp;
 
@@ -103,11 +105,20 @@ fn detect_draw(dataurl_image: &str) -> String {
     return res_dataurl_image;
 }
 
+fn menu_build<R>(app_handle: &AppHandle<R>) -> tauri::Result<Menu<R>>
+where
+    R: tauri::Runtime,
+{
+    let menu = Menu::default(app_handle);
+    menu
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_shell::init())
+        .menu(|app_handle| menu_build(app_handle))
         .invoke_handler(tauri::generate_handler![
             load_model,
             load_labels,
