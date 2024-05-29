@@ -17,7 +17,7 @@ function setLabelsLoadStatus(status) {
 }
 
 function changeAiClearButtonStatus() {
-    const status = !(modelLoadStatus && labelsLoadStatus);
+    const status = modelLoadStatus && labelsLoadStatus;
     setAiClearButton(status);
 }
 

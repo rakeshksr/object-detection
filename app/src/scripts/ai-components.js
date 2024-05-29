@@ -3,11 +3,10 @@ const ailabelsButton = document.getElementById("ailabels");
 const aiclearButton = document.getElementById("aiclear");
 
 function setAiClearButton(status) {
-    aiclearButton.disabled = status;
     if (status) {
-        aiclearButton.children[0].classList.remove("symbol-danger");
+        aiclearButton.classList.remove("d-none");
     } else {
-        aiclearButton.children[0].classList.add("symbol-danger");
+        aiclearButton.classList.add("d-none");
     }
 }
 

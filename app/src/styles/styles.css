@@ -40,12 +40,12 @@ aside.nav>ul li button {
     background: inherit;
 }
 
-aside.nav>ul li button .material-symbols-outlined {
+/* aside.nav>ul li button .material-symbols-outlined {
     color: #64748b;
-}
+} */
 
 aside.nav>ul li button.active .material-symbols-outlined {
-    color: #673ab7;
+    color: #440e9f;
 }
 
 .home {

@@ -4,10 +4,11 @@ const imageInput = document.getElementById("image-input");
 const userUploadedImg = document.getElementById("user-uploaded-img");
 const imageClearButton = document.getElementById("image-clear");
 const imageDetectButton = document.getElementById("image-detect");
+const imageResetButton = document.getElementById("image-reset");
 const imageDownloadButton = document.getElementById("image-download");
 
 function setimageDetectButton(status) {
     imageDetectButton.disabled = status;
 }
 
-export { cameraPageButton, imgInputDiv, imageInput, userUploadedImg, imageClearButton, imageDetectButton, imageDownloadButton, setimageDetectButton };
+export { cameraPageButton, imgInputDiv, imageInput, userUploadedImg, imageClearButton, imageDetectButton, imageResetButton, imageDownloadButton, setimageDetectButton };
