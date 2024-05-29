@@ -64,7 +64,7 @@ function imageReset() {
         userUploadedImg.src = originalImage;
         imageResetButton.classList.add("d-none");
         imageDownloadButton.classList.add("d-none");
-        setimageDetectButton(false);
+        changeImageDetectButtonStatus();
     }
 }
 

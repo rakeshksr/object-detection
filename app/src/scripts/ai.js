@@ -11,7 +11,7 @@ aiclearButton.addEventListener("click", clearAiContent);
 
 async function loadModel() {
     const modelOpen = await open({
-        // defaultPath: await downloadDir(),
+        defaultPath: await downloadDir(),
         filters: [{
             name: "Model",
             extensions: ["onnx"]
@@ -20,7 +20,6 @@ async function loadModel() {
     if (modelOpen !== null) {
         const modelPath = modelOpen.path;
         invoke("load_model", { model_path: modelPath });
-        // modelLoadStatus = true;
         setModelLoadStatus(true);
         aimodelButton.children[0].classList.add("symbol-success");
     }
@@ -31,7 +30,7 @@ async function loadModel() {
 
 async function loadLabels() {
     const labelsOpen = await open({
-        // defaultPath: await downloadDir(),
+        defaultPath: await downloadDir(),
         filters: [{
             name: "Labels",
             extensions: ["txt"]
