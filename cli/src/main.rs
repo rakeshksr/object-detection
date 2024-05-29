@@ -27,7 +27,10 @@ fn main() {
     let img = load_image(filepath_image);
     let classes = load_labels(classes_path);
     let predictions = detect(model, img.clone());
-    let img_res = draw_predictions(img, predictions, classes);
+    let img_res = match predictions {
+        Some(preds) => draw_predictions(img, preds, classes),
+        None => img,
+    };
     let result: String = match args.result {
         Some(path) => path,
         None => "result.jpg".to_string(),

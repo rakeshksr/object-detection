@@ -5,7 +5,6 @@ use base64::prelude::*;
 use image::{self, DynamicImage, ImageFormat};
 use once_cell::sync::Lazy;
 use tract_onnx::prelude::*;
-// use tract_onnx::tract_core::ndarray::{self, ArrayBase, OwnedRepr};
 use tract_onnx::tract_hir::infer::InferenceOp;
 
 use object_detection_core;
@@ -64,11 +63,14 @@ fn decode_dataurl_image(dataurl_image: &str) -> (DynamicImage, String) {
 }
 
 #[tauri::command(rename_all = "snake_case")]
-fn detect(dataurl_image: &str) -> Vec<f32> {
+fn detect(dataurl_image: &str) -> Option<Vec<f32>> {
     let (img, _) = decode_dataurl_image(dataurl_image);
     let model = MODEL.lock().unwrap();
     let predictions = object_detection_core::detect(model.clone().expect(""), img.into());
-    return predictions.into_raw_vec();
+    return match predictions {
+        Some(preds) => Some(preds.into_raw_vec()),
+        None => None,
+    };
 }
 
 #[tauri::command(rename_all = "snake_case")]
@@ -78,23 +80,26 @@ fn detect_draw(dataurl_image: &str) -> String {
         (String::from("data:image/jpeg;base64,"), ImageFormat::Jpeg),
         (String::from("data:image/png;base64,"), ImageFormat::Png),
     ]);
-
     let model = MODEL.lock().unwrap();
     let predictions = object_detection_core::detect(model.clone().expect(""), img.clone().into());
-    let _labels = LABELS.lock().unwrap();
-    // let classes = _labels.to_owned().unwrap();
-    let classes = _labels.clone().unwrap();
-    let img_res: image::ImageBuffer<image::Rgb<u8>, Vec<u8>> =
-        object_detection_core::draw_predictions(img.into(), predictions, classes);
-    let mut buf: Vec<u8> = Vec::new();
-    img_res
-        .write_to(
-            &mut std::io::Cursor::new(&mut buf),
-            *format_map.get(&mime_header).unwrap(),
-        )
-        .unwrap();
-    let res_base64 = BASE64_STANDARD.encode(&buf);
-    let res_dataurl_image = format!("{mime_header}{res_base64}");
+    let res_dataurl_image = match predictions {
+        Some(preds) => {
+            let _labels = LABELS.lock().unwrap();
+            // let classes = _labels.to_owned().unwrap();
+            let classes = _labels.clone().unwrap();
+            let img_res = object_detection_core::draw_predictions(img.into(), preds, classes);
+            let mut buf: Vec<u8> = Vec::new();
+            img_res
+                .write_to(
+                    &mut std::io::Cursor::new(&mut buf),
+                    *format_map.get(&mime_header).unwrap(),
+                )
+                .unwrap();
+            let res_base64 = BASE64_STANDARD.encode(&buf);
+            format!("{mime_header}{res_base64}")
+        }
+        None => dataurl_image.into(),
+    };
     return res_dataurl_image;
 }
 

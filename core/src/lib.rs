@@ -70,7 +70,7 @@ pub fn detect(
         Graph<InferenceFact, Box<dyn InferenceOp>>,
     >,
     img: ImageBuffer<Rgb<u8>, Vec<u8>>,
-) -> ArrayBase<OwnedRepr<f32>, ndarray::Dim<[usize; 2]>> {
+) -> Option<ArrayBase<OwnedRepr<f32>, ndarray::Dim<[usize; 2]>>> {
     // Preprocessing
     let imgrsz: ImageBuffer<Rgb<u8>, Vec<u8>> =
         image::imageops::resize(&img, 640, 640, FilterType::Triangle);
@@ -83,10 +83,14 @@ pub fn detect(
     .into();
 
     // Model Prediction
-    let scrs = model.run(tvec!(inimg.into())).unwrap();
-    let scores = scrs[0].to_array_view::<f32>().unwrap();
-    let predictions = scores.slice(s![.., 1..]);
-    return predictions.to_owned();
+    let predictions = match model.run(tvec!(inimg.into())) {
+        Ok(scrs) => {
+            let scores = scrs[0].to_array_view::<f32>().unwrap();
+            Some(scores.slice(s![.., 1..]).to_owned())
+        }
+        Err(_) => None,
+    };
+    return predictions;
 }
 
 pub fn draw_predictions(
