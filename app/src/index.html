@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="styles/styles.css" />
+    <title>Object Detection</title>
+</head>
+
+
+<body>
+    <aside class="nav left">
+        <ul>
+            <li>
+                <!-- <button class="camera-page-button page-button active" onclick="pageHandler(event,'camera-page')"> -->
+                <button class="camera-page-button page-button active" id="camera-page-button">
+                    <span class="material-symbols-outlined">photo_camera</span>
+                </button>
+            </li>
+            <li>
+                <!-- <button class="video-page-button page-button" onclick="pageHandler(event,'video-page')"> -->
+                <button class="video-page-button page-button" id="video-page-button">
+                    <span class="material-symbols-outlined">videocam</span>
+                </button>
+            </li>
+        </ul>
+    </aside>
+    <div class="home">
+        <div class="inner">
+            <!-- camera page -->
+            <div class="camera-page show  justify-content-center align-items-center h-100 flex-column" id="camera-page">
+                <div id="img-input-div">
+                    <label class="file-label" for="image-input">
+                        Click to upload or drag and drop
+                    </label>
+                    <input type="file" accept=".jpeg,.png,.jpg" id="image-input">
+                </div>
+
+                <!-- <img src="img_src" id="user-uploaded-img" class="d-none" /> -->
+                <img src="" height=640 width=640 id="user-uploaded-img" class="d-none" />
+                <div class="d-flex justify-content-center align-items-center column-gap-3 pt-4">
+                    <button class="btn btn-outline-danger btn-ripple d-none" id="image-clear"><span
+                            class="material-symbols-outlined">close</span></button>
+                    <button class="btn btn-outline-success btn-ripple d-none" id="image-detect" disabled><span
+                            class="material-symbols-outlined">mystery</span></button>
+                    <button class="btn btn-outline-success btn-ripple d-none" id="image-download"><span
+                            class="material-symbols-outlined">download</span></button>
+                    <!-- <button class="btn btn-outline-success btn-ripple d-none" id="image-download"><span
+                            class="material-symbols-outlined">download_for_offline</span></button> -->
+                </div>
+            </div>
+            <!-- video page -->
+            <div class="video-page justify-content-end align-items-center h-100 flex-column" id="video-page">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="video-main">
+                        <video id="video-stream" width="640" autoplay playsInline muted></video>
+                        <canvas id="video-stream-canvas" width="640" height="640"></canvas>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center column-gap-3 pt-4">
+                    <!-- <button class="btn btn-outline-success" id="start-camera"><span
+                            class="material-symbols-outlined">play_arrow</span></button> -->
+                    <button class="btn btn-outline-success btn-ripple" id="start-camera"><span
+                            class="material-symbols-outlined">play_circle</span></button>
+                    <!-- <button class="btn btn-outline-danger d-none" id="stop-camera"><span
+                            class="material-symbols-outlined">stop</span></button> -->
+                    <button class="btn btn-outline-danger d-none btn-ripple" id="stop-camera"><span
+                            class="material-symbols-outlined">stop_circle</span></button>
+                    <!-- <button class="btn btn-outline-primary" id="video-detect"><span
+                            class="material-symbols-outlined">frame_inspect</span></button> -->
+                    <button class="btn btn-outline-primary btn-ripple" id="video-detect" disabled><span
+                            class="material-symbols-outlined">mystery</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <aside class="nav right">
+        <ul>
+            <li>
+                <button id="aimodel">
+                    <span class="material-symbols-outlined">network_intelligence_update</span>
+                    <!-- <span class="material-symbols-outlined">neurology</span> -->
+                </button>
+            </li>
+            <li>
+                <button id="ailabels">
+                    <span class="material-symbols-outlined">new_label</span>
+                </button>
+            </li>
+            <li>
+                <button id="aiclear" disabled>
+                    <span class="material-symbols-outlined">delete_forever</span>
+                </button>
+            </li>
+        </ul>
+    </aside>
+    <script type="module" src="scripts/main.js" defer></script>
+</body>
+
+</html>

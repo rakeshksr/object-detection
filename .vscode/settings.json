@@ -1,0 +1,11 @@
+{
+    "[rust]": {
+        "editor.formatOnSave": true,
+    },
+    "rust-analyzer.linkedProjects": [
+        "Cargo.toml",
+    ],
+    "[html]": { "editor.formatOnSave": true },
+    "[css]": { "editor.formatOnSave": true },
+    "[javascript]": { "editor.formatOnSave": true },
+}

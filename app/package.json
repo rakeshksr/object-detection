@@ -1,0 +1,23 @@
+{
+  "name": "object-detection",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": ">=2.0.0-beta.0",
+    "@types/node": "^20.12.11",
+    "internal-ip": "^8.0.0",
+    "vite": "^5.2.11"
+  },
+  "dependencies": {
+    "@tauri-apps/plugin-dialog": "^2.0.0-beta.3",
+    "bootstrap": "^5.3.3",
+    "material-symbols": "^0.17.4"
+  }
+}
