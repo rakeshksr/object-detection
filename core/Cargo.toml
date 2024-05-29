@@ -8,8 +8,8 @@ version = "0.1.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-ab_glyph = "0.2.25"
-bracket-color = "0.8.7"
-image = "0.25"
-imageproc = "0.24"
-tract-onnx = "0.21"
+ab_glyph = { workspace = true}
+bracket-color = { workspace = true}
+image = { workspace = true }
+imageproc = { workspace = true }
+tract-onnx = { workspace = true }

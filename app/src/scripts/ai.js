@@ -40,7 +40,6 @@ async function loadLabels() {
     if (labelsOpen !== null) {
         const labelsPath = labelsOpen.path;
         invoke("load_labels", { labels_path: labelsPath });
-        // labelsLoadStatus = true;
         setLabelsLoadStatus(true);
         ailabelsButton.children[0].classList.add("symbol-success");
     }
