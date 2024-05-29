@@ -22,6 +22,7 @@ async function loadModel() {
         invoke("load_model", { model_path: modelPath });
         // modelLoadStatus = true;
         setModelLoadStatus(true);
+        aimodelButton.children[0].classList.add("symbol-success");
     }
     changeAiClearButtonStatus();
     changeImageDetectButtonStatus();
@@ -41,6 +42,7 @@ async function loadLabels() {
         invoke("load_labels", { labels_path: labelsPath });
         // labelsLoadStatus = true;
         setLabelsLoadStatus(true);
+        ailabelsButton.children[0].classList.add("symbol-success");
     }
     changeAiClearButtonStatus();
     changeImageDetectButtonStatus();
@@ -51,6 +53,8 @@ function clearAiContent() {
     invoke("clear_ai_content");
     setModelLoadStatus(false);
     setLabelsLoadStatus(false);
+    aimodelButton.children[0].classList.remove("symbol-success");
+    ailabelsButton.children[0].classList.remove("symbol-success");
     changeAiClearButtonStatus();
     changeImageDetectButtonStatus();
     changeVideoDetectButtonStatus();

@@ -1,5 +1,4 @@
 body {
-    /* background-color: #f4f7fe !important; */
     background-color: #e3e5e9 !important;
 }
 
@@ -109,10 +108,27 @@ span.ripple {
     }
 }
 
+.custom-tooltip {
+    --bs-tooltip-bg: var(--bs-primary);
+}
+
 /* .material-symbols-outlined {
     vertical-align: top;
     font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 10;
 } */
+
+.symbol-success {
+    color: #18ac18 !important;
+}
+
+.symbol-danger {
+    color: #dd1818 !important;
+}
+
+.symbol-danger:hover {
+    color: #9b0707 !important;
+}
+
 .file-label {
     display: flex;
     justify-content: center;

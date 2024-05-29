@@ -1,9 +1,13 @@
+import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "material-symbols/outlined.css";
 
 import "./ai";
 import "./image-page";
 import "./video-page";
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+tooltipTriggerList.forEach(element => new Tooltip(element));
 
 const rippleButtons = document.getElementsByClassName("btn-ripple");
 
