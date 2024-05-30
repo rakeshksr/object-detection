@@ -46,6 +46,7 @@ function stopCamera() {
 }
 
 async function videoDetect() {
+	videoDetectButton.children[0].classList.remove("visually-hidden");
 	videoStreamCanvas
 		.getContext("2d")
 		.drawImage(
@@ -61,4 +62,5 @@ async function videoDetect() {
 			console.log(predictions);
 		},
 	);
+	videoDetectButton.children[0].classList.add("visually-hidden");
 }

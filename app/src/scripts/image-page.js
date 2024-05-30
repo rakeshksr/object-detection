@@ -64,13 +64,15 @@ function clearImage() {
 }
 
 async function imageDetect() {
+	imageDetectButton.children[0].classList.remove("visually-hidden");
+	setimageDetectButton(true);
 	const image_data_url = userUploadedImg.src;
 	await invoke("detect_draw", { dataurl_image: image_data_url }).then(
 		(res_image_data_url) => {
 			userUploadedImg.src = res_image_data_url;
 		},
 	);
-	setimageDetectButton(true);
+	imageDetectButton.children[0].classList.add("visually-hidden");
 	imageResetButton.classList.remove("d-none");
 	imageDownloadButton.classList.remove("d-none");
 }
