@@ -1,6 +1,5 @@
 import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "material-symbols/outlined.css";
 
 import "./ai";
 import "./image-page";
