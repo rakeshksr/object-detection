@@ -1,6 +1,6 @@
 {
-  "productName": "object-detection",
-  "version": "0.0.1",
+  "productName": "ObjectDetection",
+  "version": "0.1.0",
   "identifier": "com.ai.objectdetect",
   "build": {
     "beforeBuildCommand": "npm run build",

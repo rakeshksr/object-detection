@@ -1,9 +1,9 @@
 [package]
-authors = ["Rakesh"]
-description = "Core package to detect objects using ONNX."
-edition = "2021"
 name = "object-detection-core"
 version = "0.1.0"
+description = "Core package to detect objects using ONNX."
+authors = ["Rakesh"]
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
