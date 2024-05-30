@@ -8,7 +8,17 @@ const imageResetButton = document.getElementById("image-reset");
 const imageDownloadButton = document.getElementById("image-download");
 
 function setimageDetectButton(status) {
-    imageDetectButton.disabled = status;
+	imageDetectButton.disabled = status;
 }
 
-export { cameraPageButton, imgInputDiv, imageInput, userUploadedImg, imageClearButton, imageDetectButton, imageResetButton, imageDownloadButton, setimageDetectButton };
+export {
+	cameraPageButton,
+	imgInputDiv,
+	imageInput,
+	userUploadedImg,
+	imageClearButton,
+	imageDetectButton,
+	imageResetButton,
+	imageDownloadButton,
+	setimageDetectButton,
+};

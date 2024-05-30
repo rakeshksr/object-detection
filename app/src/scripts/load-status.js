@@ -9,25 +9,25 @@ let imageLoadStatus = false;
 let videoCameraOnStatus = false;
 
 function setModelLoadStatus(status) {
-    modelLoadStatus = status;
+	modelLoadStatus = status;
 }
 
 function setLabelsLoadStatus(status) {
-    labelsLoadStatus = status;
+	labelsLoadStatus = status;
 }
 
 function changeAiClearButtonStatus() {
-    const status = modelLoadStatus && labelsLoadStatus;
-    setAiClearButton(status);
+	const status = modelLoadStatus && labelsLoadStatus;
+	setAiClearButton(status);
 }
 
 function setimageLoadStatus(status) {
-    imageLoadStatus = status;
+	imageLoadStatus = status;
 }
 
 function changeImageDetectButtonStatus() {
-    const status = !(modelLoadStatus && labelsLoadStatus && imageLoadStatus);
-    setimageDetectButton(status);
+	const status = !(modelLoadStatus && labelsLoadStatus && imageLoadStatus);
+	setimageDetectButton(status);
 }
 
 // function setimageDetectStatus(status) {
@@ -35,12 +35,20 @@ function changeImageDetectButtonStatus() {
 // }
 
 function setvideoCameraOnStatus(status) {
-    videoCameraOnStatus = status;
+	videoCameraOnStatus = status;
 }
 
 function changeVideoDetectButtonStatus() {
-    const status = !(modelLoadStatus && labelsLoadStatus && videoCameraOnStatus);
-    setVideoDetectButton(status);
+	const status = !(modelLoadStatus && labelsLoadStatus && videoCameraOnStatus);
+	setVideoDetectButton(status);
 }
 
-export { setModelLoadStatus, setLabelsLoadStatus, changeAiClearButtonStatus, setimageLoadStatus, changeImageDetectButtonStatus, setvideoCameraOnStatus, changeVideoDetectButtonStatus };
+export {
+	setModelLoadStatus,
+	setLabelsLoadStatus,
+	changeAiClearButtonStatus,
+	setimageLoadStatus,
+	changeImageDetectButtonStatus,
+	setvideoCameraOnStatus,
+	changeVideoDetectButtonStatus,
+};

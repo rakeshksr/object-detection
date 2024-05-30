@@ -6,7 +6,15 @@ const videoStream = document.getElementById("video-stream");
 const videoStreamCanvas = document.getElementById("video-stream-canvas");
 
 function setVideoDetectButton(status) {
-    videoDetectButton.disabled = status;
+	videoDetectButton.disabled = status;
 }
 
-export { videoPageButton, startCameraButton, stopCameraButton, videoDetectButton, videoStream, videoStreamCanvas, setVideoDetectButton };
+export {
+	videoPageButton,
+	startCameraButton,
+	stopCameraButton,
+	videoDetectButton,
+	videoStream,
+	videoStreamCanvas,
+	setVideoDetectButton,
+};
