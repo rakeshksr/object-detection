@@ -3,7 +3,6 @@ use std::sync::Mutex;
 
 use base64::prelude::*;
 use image::{self, DynamicImage, ImageFormat};
-use once_cell::sync::Lazy;
 use tauri::menu::Menu;
 use tauri::AppHandle;
 use tract_onnx::prelude::*;
@@ -11,18 +10,12 @@ use tract_onnx::tract_hir::infer::InferenceOp;
 
 use object_detection_core;
 
-static MODEL: Lazy<
-    Mutex<
-        Option<
-            SimplePlan<
-                InferenceFact,
-                Box<dyn InferenceOp>,
-                Graph<InferenceFact, Box<dyn InferenceOp>>,
-            >,
-        >,
+static MODEL: Mutex<
+    Option<
+        SimplePlan<InferenceFact, Box<dyn InferenceOp>, Graph<InferenceFact, Box<dyn InferenceOp>>>,
     >,
-> = Lazy::new(|| Mutex::new(None));
-static LABELS: Lazy<Mutex<Option<Vec<String>>>> = Lazy::new(|| Mutex::new(None));
+> = Mutex::new(None);
+static LABELS: Mutex<Option<Vec<String>>> = Mutex::new(None);
 
 #[tauri::command(rename_all = "snake_case")]
 fn load_model(model_path: &str) {
@@ -70,7 +63,7 @@ fn detect(dataurl_image: &str) -> Option<Vec<f32>> {
     let model = MODEL.lock().unwrap();
     let predictions = object_detection_core::detect(model.clone().expect(""), img.into());
     return match predictions {
-        Some(preds) => Some(preds.into_raw_vec()),
+        Some(preds) => Some(preds.into_raw_vec_and_offset().0),
         None => None,
     };
 }

@@ -26,8 +26,8 @@ async function loadModel() {
 		],
 	});
 	if (modelOpen !== null) {
-		const modelPath = modelOpen.path;
-		invoke("load_model", { model_path: modelPath });
+		const modelPath = modelOpen;
+		await invoke("load_model", { model_path: modelPath });
 		setModelLoadStatus(true);
 		aimodelButton.children[0].classList.add("symbol-success");
 	}
@@ -47,8 +47,8 @@ async function loadLabels() {
 		],
 	});
 	if (labelsOpen !== null) {
-		const labelsPath = labelsOpen.path;
-		invoke("load_labels", { labels_path: labelsPath });
+		const labelsPath = labelsOpen;
+		await invoke("load_labels", { labels_path: labelsPath });
 		setLabelsLoadStatus(true);
 		ailabelsButton.children[0].classList.add("symbol-success");
 	}
@@ -57,8 +57,8 @@ async function loadLabels() {
 	changeVideoDetectButtonStatus();
 }
 
-function clearAiContent() {
-	invoke("clear_ai_content");
+async function clearAiContent() {
+	await invoke("clear_ai_content");
 	setModelLoadStatus(false);
 	setLabelsLoadStatus(false);
 	aimodelButton.children[0].classList.remove("symbol-success");
